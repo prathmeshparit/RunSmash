@@ -8,7 +8,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 @Data
 @Builder
-
 public class ClubDto
 {
     private int id;

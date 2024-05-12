@@ -15,7 +15,7 @@ public class ClubServiceImpl implements ClubService {
 
     private ClubRepository clubRepository;
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+
     @Autowired
     public ClubServiceImpl(ClubRepository clubRepository)
     {
