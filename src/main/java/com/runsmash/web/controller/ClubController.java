@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -47,6 +48,25 @@ public class ClubController {
        clubService.saveClub(club);
        return "redirect:/clubs";
    }
+
+
+   @GetMapping("/clubs/{clubId}/edit")
+    public String editClubForm(@PathVariable("clubId") int clubId, Model model)
+   {
+       ClubDto clubdto= clubService.findClubById(clubId);
+        model.addAttribute("club",clubdto);
+       return "clubs-edit";
+   }
+
+   @PostMapping("/clubs/{clubId}/edit")
+    public String updateClub(@PathVariable("clubId") int clubId, @ModelAttribute("club") ClubDto club)
+   {
+       club.setId(clubId);
+        clubService.updateClub(club);
+       return "redirect:/clubs";
+   }
+
+
 
 
 

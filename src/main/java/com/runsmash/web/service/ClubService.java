@@ -11,5 +11,7 @@ public interface ClubService
     List<ClubDto> findAllClubs();
 
 
+    ClubDto findClubById(long clubId);
 
+    void updateClub(ClubDto club);
 }
