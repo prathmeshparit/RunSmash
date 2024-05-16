@@ -26,6 +26,7 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public Club saveClub(Club club) {
+
         return clubRepository.save(club);
     }
 

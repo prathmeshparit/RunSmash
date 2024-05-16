@@ -3,6 +3,7 @@ package com.runsmash.web.controller;
 
 import com.runsmash.web.dto.ClubDto;
 import com.runsmash.web.models.Club;
+import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import com.runsmash.web.service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +43,16 @@ public class ClubController {
         return "clubs-create";
     }
 
-   @PostMapping("/clubs/new")
-    public String saveClub(@ModelAttribute("club") Club club)
-   {
-       clubService.saveClub(club);
-       return "redirect:/clubs";
-   }
+    @PostMapping("/clubs/new")
+    public String saveClub(@ModelAttribute("club") Club club) {
+
+        clubService.saveClub(club);
+        return "redirect:/clubs";
+    }
 
 
    @GetMapping("/clubs/{clubId}/edit")
-    public String editClubForm(@PathVariable("clubId") int clubId, Model model)
+    public String editClubForm(@PathVariable("clubId") int clubId,  Model model)
    {
        ClubDto clubdto= clubService.findClubById(clubId);
         model.addAttribute("club",clubdto);
@@ -59,8 +60,11 @@ public class ClubController {
    }
 
    @PostMapping("/clubs/{clubId}/edit")
-    public String updateClub(@PathVariable("clubId") int clubId, @ModelAttribute("club") ClubDto club)
+    public String updateClub(@PathVariable("clubId") int clubId,
+                             @Valid @ModelAttribute("club") ClubDto club,
+                             BindingResult bindingResult)
    {
+       if(bindingResult.hasErrors()) return "clubs-edit";
        club.setId(clubId);
         clubService.updateClub(club);
        return "redirect:/clubs";
