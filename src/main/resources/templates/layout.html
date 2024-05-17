@@ -18,27 +18,29 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <!-- Navigation-->
-<nav class="navbar fs-5 navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar fs-5 navbar-expand-lg navbar-dark" style="background-color: skyblue;">
     <div class="container px-9">
-        <a class="navbar-brand fw-bold" >RUNSMASH</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <a class="navbar-brand" th:href="@{/}" style="color: #ffffff; font-weight: bold; font-size: 4rem;">RUNSMASH</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
-                <li class="nav-item"><a class="nav-link" href="clubs/new">CREATE CLUB</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">FIND CLUBS</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">FIND EVENTS</a></li>
-                <li class="nav-item"><a class="nav-link" href="pricing.html">FIND DIRECTORY</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}" style="font-size: 1.3rem; color:#ffffff; font-weight: bold;">HOME</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/clubs/new}" style="font-size: 1.3rem; color: #ffffff; font-weight: bold;">CREATE CLUB</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/clubs}" style="font-size: 1.3rem; color: #ffffff; font-weight: bold;">FIND CLUBS</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/events}" style="font-size: 1.3rem; color: #ffffff; font-weight: bold;">FIND EVENTS</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/}" style="font-size: 1.3rem; color: #ffffff; font-weight: bold;">FIND DIRECTORY</a></li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.3rem; color: #ffffff; font-weight: bold;">Blog</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                         <li><a class="dropdown-item" href="blog-home.html">REGISTER</a></li>
                         <li><a class="dropdown-item" href="blog-post.html">LOG OUT</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.3rem; color:#ffffff; font-weight: bold;">Portfolio</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                         <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
                         <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
@@ -48,6 +50,7 @@
         </div>
     </div>
 </nav>
+
 <body layout:fragment="body"></body>
 <section class="py-5 bg-light">
     <div class="container px-5 my-5">
