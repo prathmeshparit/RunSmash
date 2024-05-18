@@ -9,10 +9,7 @@ import com.runsmash.web.service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class ClubController {
     }
 
     @GetMapping("/clubs/{clubId}")
-    public String clubDetails(@PathVariable("clubId") int clubId, Model model)
+    public String clubDetails(@PathVariable("clubId") long clubId, Model model)
     {
         ClubDto club = clubService.findClubById(clubId);
         model.addAttribute("club", club);
@@ -65,9 +62,17 @@ public class ClubController {
         return "redirect:/clubs";
     }
 
+    @GetMapping("/clubs/search")
+    public  String searchClub(@RequestParam(value ="query") String query, Model model)
+    {
+        List<ClubDto> clubs = clubService.searchClub(query);
+        model.addAttribute("clubs", clubs);
+        return "clubs-list";
+    }
+
 
    @GetMapping("/clubs/{clubId}/edit")
-    public String editClubForm(@PathVariable("clubId") int clubId,  Model model)
+    public String editClubForm(@PathVariable("clubId") long clubId,  Model model)
    {
        ClubDto clubdto= clubService.findClubById(clubId);
         model.addAttribute("club",clubdto);
@@ -75,7 +80,7 @@ public class ClubController {
    }
 
    @PostMapping("/clubs/{clubId}/edit")
-    public String updateClub(@PathVariable("clubId") int clubId,
+    public String updateClub(@PathVariable("clubId") long clubId,
                              @Valid @ModelAttribute("club") ClubDto club,
                              BindingResult bindingResult)
    {
