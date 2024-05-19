@@ -1,5 +1,6 @@
 package com.runsmash.web.dto;
 
+import com.runsmash.web.models.Club;
 import com.runsmash.web.models.Event;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -36,5 +37,6 @@ public class EventDto
 
     private LocalDateTime updatedOn;
 
+    private Club club;
 
 }

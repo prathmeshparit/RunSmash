@@ -10,4 +10,10 @@ public interface EventService
     void createEvent(long clubId, EventDto eventdto);
 
     List<EventDto> findAllEvents();
+
+    EventDto findByEvenId(Long eventId);
+
+    EventDto findEventById(long eventId);
+
+    void updateEvent(EventDto eventDto);
 }

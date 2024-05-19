@@ -2,12 +2,15 @@ package com.runsmash.web.controller;
 
 
 
+import com.runsmash.web.dto.ClubDto;
 import com.runsmash.web.dto.EventDto;
 import com.runsmash.web.models.Event;
 import com.runsmash.web.service.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +37,15 @@ public class EventController
 
     }
 
+    @GetMapping("/events/{eventId}")
+    public  String viewEvent(Model model, @PathVariable("eventId") Long eventId)
+    {
+        EventDto eventDto = eventService.findByEvenId(eventId);
+        model.addAttribute("event", eventDto);
+        return "events-details";
+    }
+
+
     @GetMapping("/events/{clubId}/new")
     public String createEventForm(@PathVariable("clubId") long clubId, Model model)
     {
@@ -49,4 +61,27 @@ public class EventController
         eventService.createEvent(clubId,eventDto);
         return "redirect:/clubs/" + clubId;
     }
+
+    @GetMapping("/events/{eventId}/edit")
+    public String editClubForm(@PathVariable("eventId") long eventId,  Model model)
+    {
+        EventDto eventDto= eventService.findEventById(eventId);
+        model.addAttribute("event",eventDto);
+        return "events-edit";
+    }
+
+    @PostMapping("/events/{eventId}/edit")
+    public String updateEvent(@PathVariable("eventId") Long eventId,
+                              @ModelAttribute("event") EventDto event) {
+
+        EventDto eventDto = eventService.findByEvenId(eventId);
+        event.setId(eventId);
+        event.setClub(eventDto.getClub());
+        eventService.updateEvent(event);
+        return "redirect:/events";
+    }
+
+
+
+
 }
